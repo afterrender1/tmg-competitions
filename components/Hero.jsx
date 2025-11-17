@@ -2,23 +2,43 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Ticket, Users } from "lucide-react";
+import { ArrowRight, Ticket, Globe, Gift, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { Montserrat, Nova_Flat } from "next/font/google";
-const novaFlat = Nova_Flat({
-  subsets: ["latin"],
-  weight: ["400"],
-});
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
+const novaFlat = Nova_Flat({ subsets: ["latin"], weight: ["400"] });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["400"] });
+
+// Animation variants
+const fadeUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const float = {
+  animate: {
+    y: [-8, 8, -8],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
 
 export default function Hero() {
   return (
     <section className="relative w-full h-screen overflow-hidden">
-      {/* Background Image + Dark Luxury Overlay */}
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src="/images/ticketbg2.jpg"
@@ -27,151 +47,221 @@ export default function Hero() {
           priority
           className="object-cover brightness-75"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-black/30" />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
       </div>
 
-      {/* Main Content Grid */}
       <div className="relative h-full grid grid-cols-1 lg:grid-cols-2">
 
         {/* LEFT: Text + CTA */}
         <div className="flex flex-col justify-center px-8 md:px-16 lg:px-20 xl:px-32 text-white z-10">
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="space-y-6"
           >
+
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-sm font-medium mb-6 w-fit">
-              <Ticket className="w-4 h-4 text-[#ffd900]" />
-              <span>Live Draws • Guaranteed Winners</span>
-            </div>
+            <motion.div variants={fadeUp}>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-sm font-medium">
+                <Ticket className="w-4 h-4 text-[#ffd900]" />
+                <span>Live Draws • Guaranteed Winners</span>
+              </div>
+            </motion.div>
 
-            {/* Main Title */}
-            <h1 className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-none ${novaFlat.className}`}>
+            {/* Title */}
+            <motion.h1
+              variants={fadeUp}
+              className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-none ${novaFlat.className}`}
+            >
               Win Your 
-              <span className="block text-[#929292]">Dream Car</span>
-              <span className="text-4xl md:text-5xl lg:text-6xl font-light text-zinc-400">
+              <motion.span
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="block text-[#929292]"
+              >
+                Dream Car
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-light text-zinc-400"
+              >
                 Starting at Just £0.99
-              </span>
-            </h1>
+              </motion.span>
+            </motion.h1>
 
-            <p className={`mt-6 text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed ${montserrat.className}` }>
+            {/* Description */}
+            <motion.p
+              variants={fadeUp}
+              className={`text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed ${montserrat.className}`}
+            >
               Join over 2.3 million winners. Every ticket gives you a real chance to drive away in a luxury supercar — 
               Mercedes, Lamborghini, Porsche & more.
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className={`flex flex-wrap items-center gap-4 mt-10 ${montserrat.className}`}>
+            <motion.div variants={fadeUp} className={`flex flex-wrap items-center gap-4 ${montserrat.className}`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center gap-3 bg-[#929292] text-white font-bold text-lg px-10 py-5 rounded-full shadow-lg cursor-pointer hover:shadow-blue-500/40 transition-all"
+                className="group inline-flex items-center gap-3 bg-[#929292] text-white font-bold text-lg px-10 py-5 rounded-full shadow-sm hover:shadow-[#929292]/50 transition-all duration-300"
               >
                 BUY TICKETS NOW
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition" />
               </motion.button>
 
-              <button className="inline-flex items-center gap-3 text-white font-medium hover:text-orange-400 transition">
+              <motion.button
+                whileHover={{ x: 8 }}
+                className="inline-flex items-center gap-3 text-white font-medium hover:text-[#FFD900] transition"
+              >
                 View All Prizes
                 <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Trust Section */}
-            <div className={`flex items-center gap-6 mt-12 ${montserrat.className}` }>
-              <div className="flex -space-x-3">
+            <motion.div variants={fadeUp} className={`flex items-center gap-6 ${montserrat.className}`}>
+
+              {/* Avatars */}
+              <motion.div
+                variants={float}
+                animate="animate"
+                className="flex -space-x-3 items-center"
+              >
                 {["/images/user1.jpg", "/images/user2.jpg", "/images/user3.jpg", "/images/user4.jpg"].map((src, i) => (
-                  <div key={i} className="relative">
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.2, zIndex: 10 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
                     <Image
                       src={src}
                       alt="Winner"
-                      width={56}
-                      height={56}
-                      className="rounded-full border-4 border-black object-cover ring-2 ring-white/20"
+                      width={40}
+                      height={40}
+                      className="rounded-full border-2 border-black object-cover ring-1 ring-white/20"
                     />
-                  </div>
+                  </motion.div>
                 ))}
-                <div className="w-14 h-14 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-lg border-4 border-black">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
                   +2M
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-orange-400" />
-                  <span className="font-bold text-xl">2.3M+</span>
-                </div>
-                <p className="text-sm text-zinc-400">Happy Winners Worldwide</p>
+              {/* Stats */}
+              <div className="flex gap-4">
+                {[
+                  { Icon: Globe, color: "text-blue-500", value: "300k+", label: "Followers" },
+                  { Icon: Gift, color: "text-green-600", value: "100+", label: "Prizes" },
+                  { Icon: Trophy, color: "text-yellow-300", value: "£10k+", label: "Won" }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 + i * 0.1 }}
+                    whileHover={{ y: -4 }}
+                    className="flex flex-col items-center px-3 py-2 bg-[#1f1f1f] rounded-xl border-[0.5px] border-gray-600"
+                  >
+                    <span className="font-bold text-lg flex justify-center items-center gap-2">
+                      <stat.Icon className={stat.color} />
+                      {stat.value}
+                    </span>
+                    <p className="text-xs text-zinc-400">{stat.label}</p>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
+
           </motion.div>
         </div>
 
-        {/* RIGHT: Featured Prize Car */}
-    <motion.div
-  initial={{ opacity: 0, x: 100 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, delay: 0.4 }}
-  className="relative hidden lg:flex lg:flex-col lg:gap-4" // flex column
->
-  <div className="absolute inset-0 bg-linear-to-l from-transparent via-black/20 to-black/80" />
+        {/* RIGHT: Prize Images */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.4 }}
+          className="relative hidden lg:flex lg:flex-col lg:gap-8 justify-center px-10"
+        >
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/20 to-black/80" />
 
-  {/* Images container */}
-<div className="flex flex-col lg:flex-col gap-4 relative z-10 cursor-pointer">
-  {/* First Image */}
-  <div className="relative group rounded-2xl overflow-hidden">
-    <Image
-      src="/images/bg2.png"
-      alt="Current Prize Car"
-      height={200}
-      width={1400}
-      className="object-contain rounded-2xl transition-transform duration-500 group-hover:scale-105"
-    />
-    {/* Overlay on hover */}
-    <div className="absolute inset-0 bg-[#929292]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center text-white p-4">
-      <h3 className="text-xl font-bold">Prize Name 1</h3>
-      <p className="text-sm mt-2">Some details about this prize.</p>
-      <button className="mt-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-        View Details
-      </button>
-    </div>
-  </div>
+          <div className="relative z-10 space-y-8">
+            {/* First Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="relative group rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <Image
+                src="/images/bg2.png"
+                alt="Current Prize Car"
+                height={200}
+                width={1400}
+                className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-4"
+              >
+                <h3 className={`text-xl font-extrabold uppercase ${montserrat.className}`}>Competition coming soon</h3>
+                <p className={`text-sm mt-2 ${montserrat.className}`}>Some details about this prize.</p>
+                <button className="mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full">
+                  View Details
+                </button>
+              </motion.div>
+            </motion.div>
 
-  {/* Second Image */}
-  <div className="relative group rounded-2xl overflow-hidden">
-    <Image
-      src="/images/bg.png"
-      alt="Second Prize Car"
-      height={200}
-      width={1400}
-      className="object-contain rounded-2xl transition-transform duration-500 group-hover:scale-105"
-    />
-    {/* Overlay on hover */}
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center text-white p-4">
-      <h3 className="text-xl font-bold">Prize Name 2</h3>
-      <p className="text-sm mt-2">Some details about this prize.</p>
-      <button className="mt-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-        View Details
-      </button>
-    </div>
-  </div>
-</div>
-
-
-  {/* Floating Prize Card */}
-</motion.div>
-
+            {/* Second Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="relative group rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <Image
+                src="/images/bg.png"
+                alt="Second Prize Car"
+                height={200}
+                width={1400}
+                className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-4"
+              >
+                <h3 className={`text-xl font-bold uppercase ${montserrat.className}`}>Competition coming soon</h3>
+                <p className="text-sm mt-2">Some details about this prize.</p>
+                <button className="mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full">
+                  View Details
+                </button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Mobile Prize Teaser */}
-      <div className="lg:hidden absolute bottom-0 left-0 right-0 p-6">
+      {/* Mobile Teaser */}
+      <motion.div
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="lg:hidden absolute bottom-0 left-0 right-0 p-6"
+      >
         <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center">
           <p className="text-orange-400 text-sm font-bold">CURRENT PRIZE</p>
           <h3 className="text-2xl font-black">Porsche 911 Turbo S</h3>
           <p className="text-lg font-bold mt-2">£24.99 per ticket • 82% sold</p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

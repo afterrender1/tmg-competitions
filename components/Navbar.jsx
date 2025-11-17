@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ShoppingCart, User, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingCart, User, ChevronDown, Flame, Trophy, List, CheckSquare, HelpCircle } from "lucide-react";
 import { Nova_Flat } from "next/font/google";
 
 const novaFlat = Nova_Flat({
@@ -17,22 +17,23 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const timeoutRef = useRef(null);
 
-  const navLinks = [
-    {
-      name: "Competitions",
-      dropdown: true,
-      items: [
-        { name: "All Competitions", href: "/competitions" },
-        { name: "Car & Bike Competitions", href: "/competitions/cars-bikes" },
-        { name: "Cash Competitions", href: "/competitions/cash" },
-        { name: "Instant Win Competitions", href: "/competitions/instant-win" },
-      ],
-    },
-    { name: "Winners", href: "/winners" },
-    { name: "Entry List", href: "/entry-list" },
-    { name: "Results", href: "/results" },
-    { name: "FAQs", href: "/faqs" },
-  ];
+const navLinks = [
+  {
+    icon: <Flame />,
+    name: "Competitions",
+    dropdown: true,
+    items: [
+      { name: "All Competitions", href: "/competitions" },
+      { name: "Car & Bike Competitions", href: "/competitions/cars-bikes" },
+      { name: "Cash Competitions", href: "/competitions/cash" },
+      { name: "Instant Win Competitions", href: "/competitions/instant-win" },
+    ],
+  },
+  { icon: <Trophy />, color: "#ffd900", name: "Winners", href: "/winners" },
+  { icon: <List />, color: "#4a86ff", name: "Entry List", href: "/entry-list" },
+  { icon: <CheckSquare />, color: "#009c0a", name: "Results", href: "/results" },
+  { icon: <HelpCircle />, color: "#ce2be3", name: "FAQs", href: "/faqs" },
+];
 
   const openDropdown = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -73,20 +74,24 @@ export default function Navbar() {
                     onMouseLeave={closeDropdown}
                   >
                     <button className="flex items-center gap-1 hover:text-gray-300 transition">
+                       <span className="text-red-700">
+                         {link.icon}
+                       </span>
                       {link.name}
                       <ChevronDown size={16} className={`mt-0.5 transition ${dropdownOpen ? "rotate-180" : ""}`} />
                     </button>
 
                     {dropdownOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-black border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-white border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
                         {link.items.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setDropdownOpen(false)}
-                            className="block px-5 py-3 text-gray-300 hover:bg-white hover:text-black transition"
+                            className="block px-5 py-3 text-black hover:bg-black hover:text-white transition"
                           >
-                            {item.name}
+                            
+                          {item.name}
                           </Link>
                         ))}
                       </div>
@@ -96,8 +101,11 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="hover:text-gray-300 transition"
+                    className="hover:text-gray-300 transition flex justify-center items-center gap-2"
                   >
+                    <span style={{color : `${link.color}`}}>
+                        {link.icon}
+                    </span>
                     {link.name}
                   </Link>
                 )
