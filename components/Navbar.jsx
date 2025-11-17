@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ShoppingCart, User, ChevronDown, Flame, Trophy, List, CheckSquare, HelpCircle } from "lucide-react";
 import { Montserrat, Nova_Flat } from "next/font/google";
+import AnimatedText from "./AnimatedText";
 
 const novaFlat = Nova_Flat({
     subsets: ["latin"],
@@ -12,7 +13,7 @@ const novaFlat = Nova_Flat({
 });
 const montserrat = Montserrat({
     subsets: ["latin"],
-    weight: ["400"],
+    weight: ["500"],
 });
 
 export default function Navbar() {
@@ -51,7 +52,9 @@ export default function Navbar() {
     return (
         <>
             {/* Fixed Navbar */}
-            <nav className="fixed top-5 left-0 right-0 mx-10 z-50">
+            <nav className="fixed top-3 left-0 right-0 mx-10 z-50">
+        {/* <AnimatedText/> */}
+
                 <div className="bg-black/50 text-white rounded-full shadow-2xl  backdrop-blur-md">
                     <div className="flex items-center justify-between h-16 p-5 md:p-10">
                         {/* Logo */}
