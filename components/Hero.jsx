@@ -47,8 +47,8 @@ export default function Hero() {
           priority
           className="object-cover brightness-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-black/30" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
       </div>
 
       <div className="relative h-full grid grid-cols-1 lg:grid-cols-2">
@@ -108,7 +108,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center gap-3 bg-[#929292] text-white font-bold text-lg px-10 py-5 rounded-full shadow-sm hover:shadow-[#929292]/50 transition-all duration-300"
+                className="group inline-flex items-center gap-3 cursor-pointer bg-[#929292] text-white font-bold text-lg px-10 py-5 rounded-full shadow-sm hover:shadow-[#929292]/50 transition-all duration-300"
               >
                 BUY TICKETS NOW
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition" />
@@ -116,7 +116,7 @@ export default function Hero() {
 
               <motion.button
                 whileHover={{ x: 8 }}
-                className="inline-flex items-center gap-3 text-white font-medium hover:text-[#FFD900] transition"
+                className="inline-flex items-center gap-3 text-white font-medium hover:text-[#FFD900] transition cursor-pointer"
               >
                 View All Prizes
                 <ArrowRight className="w-5 h-5" />
@@ -147,7 +147,7 @@ export default function Hero() {
                     />
                   </motion.div>
                 ))}
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
+                <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
                   +2M
                 </div>
               </motion.div>
@@ -187,7 +187,7 @@ export default function Hero() {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="relative hidden lg:flex lg:flex-col lg:gap-8 justify-center px-10"
         >
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/20 to-black/80" />
+          <div className="absolute inset-0 bg-linear-to-l from-transparent via-black/20 to-black/80" />
 
           <div className="relative z-10 space-y-8">
             {/* First Image */}
@@ -212,7 +212,7 @@ export default function Hero() {
               >
                 <h3 className={`text-xl font-extrabold uppercase ${montserrat.className}`}>Competition coming soon</h3>
                 <p className={`text-sm mt-2 ${montserrat.className}`}>Some details about this prize.</p>
-                <button className="mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full">
+                <button className={`mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full cursor-pointer ${montserrat.className}`}>
                   View Details
                 </button>
               </motion.div>
@@ -240,7 +240,7 @@ export default function Hero() {
               >
                 <h3 className={`text-xl font-bold uppercase ${montserrat.className}`}>Competition coming soon</h3>
                 <p className="text-sm mt-2">Some details about this prize.</p>
-                <button className="mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full">
+                <button className={`mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full cursor-pointer ${montserrat.className}`}>
                   View Details
                 </button>
               </motion.div>
