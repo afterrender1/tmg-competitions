@@ -4,6 +4,7 @@ import Hero from './Hero'
 import Competition from './Competition'
 import HowItWorks from './HowItWorks'
 import MeetOurWinners from './MeetOurWinners'
+import Footer from './Footer'
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Competition/>
             <HowItWorks/>
             <MeetOurWinners/>
+            <Footer/>
 
 
         </>
