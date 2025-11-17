@@ -127,7 +127,7 @@ export default function Competition() {
     <button
       key={tab.type}
       onClick={() => setActiveTab(tab.type)}
-      className={`px-7 py-3.5 rounded-full font-medium text-sm tracking-wide transition-all duration-300 cursor-pointer border border-white/10
+      className={`px-7 py-3.5 rounded-full font-medium text-sm tracking-wide transition-all duration-300 cursor-pointer border border-black/10 hover:border-black/90
         ${
           activeTab === tab.type
             ? "bg-black text-white shadow-xl"
