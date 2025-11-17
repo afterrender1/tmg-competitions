@@ -147,8 +147,8 @@ export default function Hero() {
                     />
                   </motion.div>
                 ))}
-                <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
-                  +2M
+                <div className="w-10 h-10 rounded-full bg-linear-to-br from-yellow-600 to-yellow-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
+                  100+
                 </div>
               </motion.div>
 
@@ -185,11 +185,11 @@ export default function Hero() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, delay: 0.4 }}
-          className="relative hidden lg:flex lg:flex-col lg:gap-8 justify-center px-10"
+          className="relative hidden lg:flex lg:flex-col lg:gap-8 justify-end px-10"
         >
           <div className="absolute inset-0 bg-linear-to-l from-transparent via-black/20 to-black/80" />
 
-          <div className="relative z-10 space-y-8">
+          <div className="relative z-10 space-y-4 mb-3">
             {/* First Image */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
@@ -201,7 +201,7 @@ export default function Hero() {
                 src="/images/bg2.png"
                 alt="Current Prize Car"
                 height={200}
-                width={1400}
+                width={850}
                 className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
               />
               <motion.div
@@ -229,7 +229,7 @@ export default function Hero() {
                 src="/images/bg.png"
                 alt="Second Prize Car"
                 height={200}
-                width={1400}
+                width={850}
                 className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
               />
               <motion.div
