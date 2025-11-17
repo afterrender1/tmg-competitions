@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Hero from './Hero'
 import Competition from './Competition'
 import HowItWorks from './HowItWorks'
+import MeetOurWinners from './MeetOurWinners'
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Hero />
             <Competition/>
             <HowItWorks/>
+            <MeetOurWinners/>
 
 
         </>
