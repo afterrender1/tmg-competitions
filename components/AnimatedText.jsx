@@ -29,14 +29,14 @@ export default function AnimatedText() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative w-full bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 text-white overflow-hidden rounded-xl shadow-2xl"
+      className="relative w-full bg-linear-to-r from-amber-500 via-orange-500 to-red-600 text-white overflow-hidden rounded-xl shadow-2xl"
     >
       {/* Animated Shining Background Effect */}
       <div className="absolute inset-0 opacity-30">
         <motion.div
           animate={{ x: [-100, 1000] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          className="h-full w-48 bg-gradient-to-r from-transparent via-white to-transparent -skew-x-12"
+          className="h-full w-48 bg-linear-to-r from-transparent via-white to-transparent -skew-x-12"
         />
       </div>
 
