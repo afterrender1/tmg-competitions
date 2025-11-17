@@ -1,11 +1,11 @@
-// components/Navbar.jsx
 "use client";
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ShoppingCart, User, ChevronDown } from "lucide-react";
-import { Montserrat, Nova_Flat } from "next/font/google";
+import { Nova_Flat } from "next/font/google";
+
 const novaFlat = Nova_Flat({
   subsets: ["latin"],
   weight: ["400"],
@@ -14,8 +14,6 @@ const novaFlat = Nova_Flat({
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState(false);
-  
-  // Desktop dropdown state + hover delay
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const timeoutRef = useRef(null);
 
@@ -42,23 +40,20 @@ export default function Navbar() {
   };
 
   const closeDropdown = () => {
-    timeoutRef.current = setTimeout(() => {
-      setDropdownOpen(false);
-    }, 150);
+    timeoutRef.current = setTimeout(() => setDropdownOpen(false), 150);
   };
 
   return (
     <>
       {/* Fixed Navbar */}
-      <nav className="fixed top-5 left-0 right-0 mx-10  z-50">
-        <div className="bg-black text-white rounded-full shadow-2xl border border-gray-800">
-          <div className="flex items-center justify-between h-16 p-10">
-
+      <nav className="fixed top-5 left-0 right-0 mx-10 z-50">
+        <div className="bg-black/50 text-white rounded-full shadow-2xl  backdrop-blur-md">
+          <div className="flex items-center justify-between h-16 p-5 md:p-10">
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="relative w-40 h-18">
                 <Image
-                  src="/logos/tmglogo.png"
+                  src="/logos/tmglogo2.png"
                   alt="TMG Logo"
                   fill
                   className="object-contain"
@@ -68,7 +63,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className={`hidden lg:flex items-center gap-8 text-lg font-semibold ${novaFlat.className}`}>
+            <div className={`hidden lg:flex items-center gap-8 text-lg font-semibold uppercase ${novaFlat.className}`}>
               {navLinks.map((link) =>
                 link.dropdown ? (
                   <div
@@ -77,13 +72,11 @@ export default function Navbar() {
                     onMouseEnter={openDropdown}
                     onMouseLeave={closeDropdown}
                   >
-                    {/* Trigger */}
                     <button className="flex items-center gap-1 hover:text-gray-300 transition">
                       {link.name}
                       <ChevronDown size={16} className={`mt-0.5 transition ${dropdownOpen ? "rotate-180" : ""}`} />
                     </button>
 
-                    {/* Dropdown Menu */}
                     {dropdownOpen && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-black border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
                         {link.items.map((item) => (
@@ -113,7 +106,6 @@ export default function Navbar() {
 
             {/* Right Icons */}
             <div className="flex items-center gap-3">
-              {/* Cart */}
               <button className="relative p-2.5 bg-white text-black rounded-full hover:bg-gray-200 transition">
                 <ShoppingCart size={18} />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
@@ -121,12 +113,10 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* User */}
               <button className="p-2.5 bg-white text-black rounded-full hover:bg-gray-200 transition">
                 <User size={18} />
               </button>
 
-              {/* Mobile Toggle */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="lg:hidden text-white p-2"
@@ -142,7 +132,6 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 pt-24 px-6 lg:hidden">
           <div className="flex flex-col gap-6 text-lg font-medium">
-
             {/* Mobile Competitions Dropdown */}
             <div>
               <button
@@ -189,9 +178,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      {/* Spacer */}
-      <div className="h-24" />
     </>
   );
 }
