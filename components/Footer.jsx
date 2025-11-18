@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-// import { Facebook, Instagram, TikTok } from "lucide-react";
+import { Facebook, Instagram, TikTok } from "lucide-react";
 import { Montserrat, Nova_Flat } from "next/font/google";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["500"] });
@@ -32,10 +32,10 @@ export default function Footer() {
           <h3 className={`text-white font-semibold mb-4 ${novaFlat.className}`}>FOLLOW US ON</h3>
           <div className="flex items-center gap-4">
             <a href="#" aria-label="Facebook" className="hover:text-orange-400 transition">
-              {/* <Facebook size={24} /> */}
+              <Facebook size={24} />
             </a>
             <a href="#" aria-label="Instagram" className="hover:text-orange-400 transition">
-              {/* <Instagram size={24} /> */}
+              <Instagram size={24} />
             </a>
             <a href="#" aria-label="TikTok" className="hover:text-orange-400 transition">
               {/* <TikTok size={24} /> */}
@@ -44,14 +44,13 @@ export default function Footer() {
         </div>
 
         {/* Payment Methods */}
-        {/* <div>
+        <div>
           <h3 className={`text-white font-semibold mb-4 ${novaFlat.className}`}>PAYMENT METHODS</h3>
-          <div className="flex flex-wrap gap-2">
-            <Image src="/images/visa.png" alt="Visa" width={60} height={40} />
-            <Image src="/images/mastercard.png" alt="Mastercard" width={60} height={40} />
-            <Image src="/images/paypal.png" alt="PayPal" width={60} height={40} />
+          <div className="">
+            <Image src="/images/pm.png" alt="Visa" width={250} height={40} />
+        
           </div>
-        </div> */}
+        </div>
 
         {/* Contact Us */}
         <div>
@@ -70,7 +69,7 @@ export default function Footer() {
 
       {/* Bottom Divider */}
       <div className="mt-8 border-t border-white/20 pt-4 text-white/60 text-xs text-center">
-        Designed & Built by TMG Competitions
+        Designed & Built by AfterRender
       </div>
     </footer>
   );
