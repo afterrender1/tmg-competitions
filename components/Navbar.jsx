@@ -14,6 +14,7 @@ import {
   List,
   CheckSquare,
   HelpCircle,
+  ShoppingBag
 } from "lucide-react";
 import { Montserrat, Nova_Flat } from "next/font/google";
 
@@ -208,7 +209,7 @@ export default function Navbar() {
                   aria-label="Cart"
                   className="relative p-3 sm:p-3.5 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full hover:bg-white/20 hover:border-white/20 transition-all duration-300 shadow"
                 >
-                  <ShoppingCart className="w-5 h-5 text-white" strokeWidth={2.2} />
+                  <ShoppingBag className="w-5 h-5 text-white" strokeWidth={2.2} />
                   <span className="absolute -top-1 -right-1 flex items-center justify-center w-6 h-6 bg-linear-to-br from-red-500 to-rose-600 text-white text-xs font-bold rounded-full shadow-lg ring-1 ring-black/50">
                     0
                   </span>

@@ -65,7 +65,7 @@ export default function FAQPage() {
   };
 
   return (
-    <div className={`min-h-screen bg-white text-gray-900 px-6 py-16 lg:py-30 ${montserrat.className}`}>
+    <div className={`min-h-screen bg-white text-gray-900 px-6 py-30 lg:py-30 ${montserrat.className}`}>
       {/* Heading */}
       <div className="text-center mb-16">
         <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 ${novaFlat.className}`}>

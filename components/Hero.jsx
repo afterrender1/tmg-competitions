@@ -135,21 +135,22 @@ export default function Hero() {
                                 animate="animate"
                                 className="flex -space-x-3 sm:-space-x-4"
                             >
-                                {["/images/user1.jpg", "/images/user2.jpg", "/images/user3.jpg", "/images/user4.jpg"].map((src, i) => (
-                                    <motion.div
-                                        key={i}
-                                        whileHover={{ scale: 1.2, zIndex: 10 }}
-                                        transition={{ type: "spring", stiffness: 400 }}
-                                    >
-                                        <Image
-                                            src={src}
-                                            alt="Winner"
-                                            width={40}
-                                            height={40}
-                                            className="rounded-full border-2 border-black object-cover ring-1 ring-white/20"
-                                        />
-                                    </motion.div>
-                                ))}
+                             {["/winners/w1c.png", "/winners/w2.png", "/winners/w3.png", "/winners/w4.png"].map((src, i) => (
+    <motion.div
+        key={i}
+        whileHover={{ scale: 1.2, zIndex: 10 }}
+        transition={{ type: "spring", stiffness: 400 }}
+    >
+        <Image
+            src={src}
+            alt="Winner"
+            width={48}
+            height={48}
+            className="w-12 h-12 rounded-full border-2 border-black object-cover ring-1 ring-white/20"
+        />
+    </motion.div>
+))}
+
                                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-linear-to-br from-yellow-600 to-yellow-700 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
                                     100+
                                 </div>
