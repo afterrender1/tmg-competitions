@@ -14,7 +14,6 @@ const Home = () => {
             <Competition/>
             <HowItWorks/>
             <MeetOurWinners/>
-            <Footer/>
 
 
         </>
