@@ -9,7 +9,7 @@ import { Montserrat, Nova_Flat } from "next/font/google";
 const novaFlat = Nova_Flat({ subsets: ["latin"], weight: ["400"] });
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400"] });
 
-// Animation variants
+// Animation variants (unchanged)
 const fadeUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
@@ -37,7 +37,7 @@ const float = {
 
 export default function Hero() {
     return (
-        <section className="relative w-full h-screen overflow-hidden">
+        <section className="relative w-full min-h-screen overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0">
                 <Image
@@ -51,20 +51,21 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
             </div>
 
-            <div className="relative h-full grid grid-cols-1 lg:grid-cols-2">
+            <div className="relative h-screen grid grid-cols-1 lg:grid-cols-2">
 
                 {/* LEFT: Text + CTA */}
-                <div className="flex flex-col justify-center px-8 md:px-16 lg:px-20 xl:px-32 text-white z-10">
+                <div className="flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-12 xl:px-20 2xl:px-32 text-white z-10">
                     <motion.div
                         variants={staggerContainer}
                         initial="initial"
-                        animate="animate"
-                        className="space-y-6"
+                        whileInView="animate"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="max-w-4xl space-y-6 sm:space-y-8"
                     >
 
                         {/* Badge */}
                         <motion.div variants={fadeUp}>
-                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-sm font-medium">
+                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium">
                                 <Ticket className="w-4 h-4 text-[#ffd900]" />
                                 <span>Live Draws • Guaranteed Winners</span>
                             </div>
@@ -73,12 +74,13 @@ export default function Hero() {
                         {/* Title */}
                         <motion.h1
                             variants={fadeUp}
-                            className={`text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-none ${novaFlat.className}`}
+                            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-none ${novaFlat.className}`}
                         >
                             Win Your
                             <motion.span
                                 initial={{ opacity: 0, x: -40 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: 0.6, duration: 0.8 }}
                                 className="block text-[#929292]"
                             >
@@ -86,9 +88,10 @@ export default function Hero() {
                             </motion.span>
                             <motion.span
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: 0.9 }}
-                                className="text-4xl md:text-5xl lg:text-6xl font-light text-zinc-400"
+                                className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-zinc-400 mt-2"
                             >
                                 Starting at Just £0.99
                             </motion.span>
@@ -97,26 +100,26 @@ export default function Hero() {
                         {/* Description */}
                         <motion.p
                             variants={fadeUp}
-                            className={`text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed ${montserrat.className}`}
+                            className={`text-base sm:text-lg md:text-xl text-zinc-300 leading-relaxed max-w-xl lg:max-w-2xl ${montserrat.className}`}
                         >
                             Join over 2.3 million winners. Every ticket gives you a real chance to drive away in a luxury supercar —
                             Mercedes, Lamborghini, Porsche & more.
                         </motion.p>
 
                         {/* CTA Buttons */}
-                        <motion.div variants={fadeUp} className={`flex flex-wrap items-center gap-4 ${montserrat.className}`}>
+                        <motion.div variants={fadeUp} className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 ${montserrat.className}`}>
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group inline-flex items-center gap-3 cursor-pointer bg-[#929292] text-white font-bold text-lg px-10 py-5 rounded-full shadow-sm hover:shadow-[#929292]/50 transition-all duration-300"
+                                className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#929292] text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-sm hover:shadow-[#929292]/50 transition-all duration-300"
                             >
                                 BUY TICKETS NOW
-                                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition" />
+                                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition" />
                             </motion.button>
 
                             <motion.button
                                 whileHover={{ x: 8 }}
-                                className="inline-flex items-center gap-3 text-white font-medium hover:text-[#FFD900] transition cursor-pointer"
+                                className="inline-flex items-center gap-3 text-white font-medium hover:text-[#FFD900] transition"
                             >
                                 View All Prizes
                                 <ArrowRight className="w-5 h-5" />
@@ -124,13 +127,13 @@ export default function Hero() {
                         </motion.div>
 
                         {/* Trust Section */}
-                        <motion.div variants={fadeUp} className={`flex items-center gap-6 ${montserrat.className}`}>
+                        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
 
                             {/* Avatars */}
                             <motion.div
                                 variants={float}
                                 animate="animate"
-                                className="flex -space-x-3 items-center"
+                                className="flex -space-x-3 sm:-space-x-4"
                             >
                                 {["/images/user1.jpg", "/images/user2.jpg", "/images/user3.jpg", "/images/user4.jpg"].map((src, i) => (
                                     <motion.div
@@ -147,13 +150,13 @@ export default function Hero() {
                                         />
                                     </motion.div>
                                 ))}
-                                <div className="w-10 h-10 rounded-full bg-linear-to-br from-yellow-600 to-yellow-600 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
+                                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-linear-to-br from-yellow-600 to-yellow-700 flex items-center justify-center text-white font-bold text-sm border-2 border-black">
                                     100+
                                 </div>
                             </motion.div>
 
                             {/* Stats */}
-                            <div className="flex gap-4">
+                            <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full sm:w-auto">
                                 {[
                                     { Icon: Globe, color: "text-blue-500", value: "300k+", label: "Followers" },
                                     { Icon: Gift, color: "text-green-600", value: "100+", label: "Prizes" },
@@ -162,16 +165,17 @@ export default function Hero() {
                                     <motion.div
                                         key={i}
                                         initial={{ opacity: 0, y: 30 }}
-                                        animate={{ opacity: 1, y: 0 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
                                         transition={{ delay: 0.8 + i * 0.1 }}
                                         whileHover={{ y: -4 }}
-                                        className="flex flex-col items-center px-3 py-2 bg-[#1f1f1f] rounded-xl border-[0.5px] border-gray-600"
+                                        className="flex flex-col items-center px-3 py-3 bg-[#1f1f1f] rounded-xl border-[0.5px] border-gray-600"
                                     >
-                                        <span className="font-bold text-lg flex justify-center items-center gap-2">
-                                            <stat.Icon className={stat.color} />
+                                        <span className="font-bold text-sm sm:text-lg flex items-center gap-1.5">
+                                            <stat.Icon className={`w-5 h-5 ${stat.color}`} />
                                             {stat.value}
                                         </span>
-                                        <p className="text-xs text-zinc-400">{stat.label}</p>
+                                        <p className="text-xs text-zinc-400 mt-1">{stat.label}</p>
                                     </motion.div>
                                 ))}
                             </div>
@@ -183,36 +187,39 @@ export default function Hero() {
                 {/* RIGHT: Prize Images */}
                 <motion.div
                     initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: 0.4 }}
-                    className="relative hidden lg:flex lg:flex-col lg:gap-8 justify-end px-10"
+                    className="hidden lg:flex flex-col justify-end px-8 xl:px-16 pb-10"
                 >
-                    <div className="absolute inset-0 bg-linear-to-l from-transparent via-black/20 to-black/80" />
+                    <div className="absolute inset-0 bg-linear-to-l from-transparent via-black/20 to-black/80 pointer-events-none" />
 
-                    <div className="relative z-10 space-y-4 mb-3">
+                    <div className="relative z-10 max-w-5xl mx-auto space-y-6">
                         {/* First Image */}
                         <motion.div
                             initial={{ opacity: 0, y: 60 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.8 }}
                             className="relative group rounded-2xl overflow-hidden shadow-2xl"
                         >
                             <Image
                                 src="/images/bg2.png"
                                 alt="Current Prize Car"
-                                height={200}
-                                width={850}
-                                className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                                width={1000}
+                                height={400}
+                                className="w-full object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                                priority
                             />
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 whileHover={{ opacity: 1 }}
                                 transition={{ duration: 0.4 }}
-                                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-4"
+                                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-6 text-center"
                             >
                                 <h3 className={`text-xl font-extrabold uppercase ${montserrat.className}`}>Competition coming soon</h3>
                                 <p className={`text-sm mt-2 ${montserrat.className}`}>Some details about this prize.</p>
-                                <button className={`mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full cursor-pointer ${montserrat.className}`}>
+                                <button className={`mt-4 px-6 py-3 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full font-medium ${montserrat.className}`}>
                                     View Details
                                 </button>
                             </motion.div>
@@ -221,26 +228,27 @@ export default function Hero() {
                         {/* Second Image */}
                         <motion.div
                             initial={{ opacity: 0, y: 60 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 1 }}
                             className="relative group rounded-2xl overflow-hidden shadow-2xl"
                         >
                             <Image
                                 src="/images/bg.png"
                                 alt="Second Prize Car"
-                                height={200}
-                                width={850}
-                                className="object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
+                                width={1000}
+                                height={400}
+                                className="w-full object-contain rounded-2xl transition-transform duration-700 group-hover:scale-105"
                             />
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 whileHover={{ opacity: 1 }}
                                 transition={{ duration: 0.4 }}
-                                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-4"
+                                className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-white p-6 text-center"
                             >
                                 <h3 className={`text-xl font-bold uppercase ${montserrat.className}`}>Competition coming soon</h3>
                                 <p className="text-sm mt-2">Some details about this prize.</p>
-                                <button className={`mt-4 px-4 py-2 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full cursor-pointer ${montserrat.className}`}>
+                                <button className={`mt-4 px-6 py-3 bg-[#929292] hover:bg-[#a0a0a0] transition-colors duration-300 rounded-full font-medium ${montserrat.className}`}>
                                     View Details
                                 </button>
                             </motion.div>
@@ -252,14 +260,15 @@ export default function Hero() {
             {/* Mobile Teaser */}
             <motion.div
                 initial={{ y: 100 }}
-                animate={{ y: 0 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="lg:hidden absolute bottom-0 left-0 right-0 p-6"
+                className="lg:hidden absolute bottom-0 left-0 right-0 p-4 sm:p-6"
             >
                 <div className="bg-black/80 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center">
                     <p className="text-orange-400 text-sm font-bold">CURRENT PRIZE</p>
-                    <h3 className="text-2xl font-black">Porsche 911 Turbo S</h3>
-                    <p className="text-lg font-bold mt-2">£24.99 per ticket • 82% sold</p>
+                    <h3 className="text-2xl sm:text-3xl font-black mt-2">Porsche 911 Turbo S</h3>
+                    <p className="text-base sm:text-lg font-bold text-zinc-300 mt-2">£24.99 per ticket • 82% sold</p>
                 </div>
             </motion.div>
         </section>
