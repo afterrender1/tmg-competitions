@@ -39,7 +39,7 @@ const competitions = [
     progress: 68.4,
     drawDate: new Date("2025-11-25T20:00:00"),
     drawDay: "TUE 25TH NOV",
-    image: "/images/bg.png",
+    image: "/images/poundcash.png",
   },
   {
     id: 3,
@@ -151,7 +151,7 @@ export default function Competition() {
                   className="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200 hover:shadow-2xl transition-all duration-300 group"
                 >
                   {/* Image */}
-                  <div className="relative h-48 sm:h-56 lg:h-64 w-full overflow-hidden">
+                  <div className="relative h-60 sm:h-56 lg:h-70 w-full overflow-hidden">
                     <Image
                       src={c.image}
                       alt={c.name}
